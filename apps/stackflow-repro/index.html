@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stackflow 검증 랩 (실구현)</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="frame">
+    <h1>Stack Navigation 검증 랩</h1>
+    <p>실제 동작: push/pop/history/back/refresh를 직접 검증할 수 있습니다.</p>
+
+    <section class="panel">
+      <h2>실험 설정</h2>
+      <label><input id="syncHistory" type="checkbox" checked /> history 동기화 사용</label>
+      <label><input id="simulateDesktopRefreshIssue" type="checkbox" /> PC 새로고침 이슈 시뮬레이션(재현용)</label>
+      <div>현재 폭: <strong id="viewportState"></strong></div>
+    </section>
+
+    <section class="panel">
+      <h2>내비게이션</h2>
+      <div class="buttons">
+        <button data-push="home">Home push</button>
+        <button data-push="list">List push</button>
+        <button data-push="detail">Detail push</button>
+        <button data-push="modal">Modal push</button>
+        <button id="popBtn">flow.pop()</button>
+        <button id="backBtn">window.history.back()</button>
+      </div>
+      <div id="stackView"></div>
+      <div id="log"></div>
+    </section>
+
+    <section class="panel">
+      <h2>검증 절차</h2>
+      <ol>
+        <li>폭을 600px 초과 상태로 둔 뒤 <code>List -&gt; Detail</code>로 이동</li>
+        <li>새로고침</li>
+        <li><code>window.history.back()</code> 과 <code>flow.pop()</code> 버튼 각각 비교</li>
+      </ol>
+    </section>
+  </main>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

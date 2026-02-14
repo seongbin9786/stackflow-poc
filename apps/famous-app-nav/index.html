@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>유명 앱 내비게이션 재현 (실구동)</title>
+  <style>
+    body{margin:0;background:#f8fafc;font-family:system-ui,sans-serif} main{max-width:600px;margin:0 auto;background:white;min-height:100vh;padding:16px}
+    .app{border:1px solid #cbd5e1;border-radius:8px;padding:10px;margin-bottom:10px}.state{color:#0f172a;font-weight:700}
+    button{margin-right:6px;margin-bottom:6px}
+  </style>
+</head>
+<body>
+<main>
+  <h1>유명 앱 스타일 내비게이션</h1>
+
+  <section class="app">
+    <h2>Instagram</h2>
+    <button onclick="setState('ig','feed')">Feed</button>
+    <button onclick="setState('ig','profile')">Profile</button>
+    <button onclick="setState('ig','post')">Post Detail</button>
+    <button onclick="setState('ig','composer-modal')">Create Modal</button>
+    <div class="state" id="ig"></div>
+  </section>
+
+  <section class="app">
+    <h2>YouTube</h2>
+    <button onclick="setState('yt','home')">Home</button>
+    <button onclick="setState('yt','watch')">Watch</button>
+    <button onclick="setState('yt','shorts')">Shorts</button>
+    <button onclick="setState('yt','search-result')">Search Result</button>
+    <div class="state" id="yt"></div>
+  </section>
+
+  <section class="app">
+    <h2>Uber</h2>
+    <button onclick="setState('uber','map-root')">Map Root</button>
+    <button onclick="setState('uber','pickup-sheet')">Pickup Sheet</button>
+    <button onclick="setState('uber','ride-options')">Ride Options</button>
+    <button onclick="setState('uber','trip-progress')">Trip Progress</button>
+    <div class="state" id="uber"></div>
+  </section>
+
+  <section class="app">
+    <h2>KakaoTalk</h2>
+    <button onclick="setState('kakao','chat-list')">Chat List</button>
+    <button onclick="setState('kakao','chat-room')">Chat Room</button>
+    <button onclick="setState('kakao','profile-overlay')">Profile Overlay</button>
+    <button onclick="setState('kakao','settings')">Settings</button>
+    <div class="state" id="kakao"></div>
+  </section>
+</main>
+<script>
+  function setState(id, value) { document.getElementById(id).textContent = `current: ${value}`; }
+  setState('ig','feed');
+  setState('yt','home');
+  setState('uber','map-root');
+  setState('kakao','chat-list');
+</script>
+</body>
+</html>

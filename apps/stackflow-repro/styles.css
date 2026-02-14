@@ -1,0 +1,12 @@
+:root { font-family: system-ui, sans-serif; }
+body { margin: 0; background: #f1f5f9; }
+.frame { max-width: 600px; margin: 0 auto; min-height: 100vh; background: #fff; padding: 16px; }
+.panel { border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px; margin-bottom: 12px; }
+.buttons { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+button { padding: 8px 10px; }
+#log { background: #0f172a; color: #e2e8f0; min-height: 90px; font-size: 12px; padding: 8px; border-radius: 6px; white-space: pre-wrap; }
+.stack-item { padding: 6px; border-bottom: 1px dashed #cbd5e1; }
+@media (min-width: 601px) {
+  body { background: #dbeafe; }
+  .frame { margin-top: 20px; }
+}

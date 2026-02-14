@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Navigation Patterns 실구현</title>
+  <style>
+    body{margin:0;background:#eef2ff;font-family:system-ui,sans-serif} main{max-width:600px;margin:0 auto;background:#fff;min-height:100vh;padding:16px}
+    .tabs button,.actions button{margin:4px;padding:8px}
+    .card{border:1px solid #ddd;border-radius:8px;padding:10px;margin:10px 0}
+  </style>
+</head>
+<body>
+<main>
+  <h1>다양한 화면 내비게이션 재현</h1>
+
+  <div class="card">
+    <h2>1) Tabs + Nested Stack</h2>
+    <div class="tabs">
+      <button data-tab="feed">Feed</button>
+      <button data-tab="search">Search</button>
+      <button data-tab="profile">Profile</button>
+    </div>
+    <div class="actions">
+      <button id="openDetail">현재 탭 Detail 열기</button>
+      <button id="closeDetail">Detail 닫기</button>
+    </div>
+    <div id="tabResult"></div>
+  </div>
+
+  <div class="card">
+    <h2>2) Wizard</h2>
+    <button id="prevStep">Prev</button>
+    <button id="nextStep">Next</button>
+    <div id="wizardResult"></div>
+  </div>
+
+  <div class="card">
+    <h2>3) Fullscreen Modal Route</h2>
+    <button id="openModal">Modal 열기</button>
+    <button id="closeModal">Modal 닫기</button>
+    <div id="modalResult"></div>
+  </div>
+</main>
+<script>
+  let currentTab = 'feed';
+  let tabDetail = null;
+  let step = 1;
+  let modalOpen = false;
+
+  const tabResult = document.getElementById('tabResult');
+  const wizardResult = document.getElementById('wizardResult');
+  const modalResult = document.getElementById('modalResult');
+
+  function render() {
+    tabResult.textContent = tabDetail ? `${currentTab} > detail(${tabDetail})` : `${currentTab} root`;
+    wizardResult.textContent = `step ${step} / 3`;
+    modalResult.textContent = modalOpen ? 'modal route: /modal (fullscreen)' : 'modal closed';
+  }
+
+  document.querySelectorAll('[data-tab]').forEach((btn) => {
+    btn.addEventListener('click', () => { currentTab = btn.dataset.tab; tabDetail = null; render(); });
+  });
+  document.getElementById('openDetail').addEventListener('click', () => { tabDetail = Date.now(); render(); });
+  document.getElementById('closeDetail').addEventListener('click', () => { tabDetail = null; render(); });
+  document.getElementById('prevStep').addEventListener('click', () => { if (step > 1) step--; render(); });
+  document.getElementById('nextStep').addEventListener('click', () => { if (step < 3) step++; render(); });
+  document.getElementById('openModal').addEventListener('click', () => { modalOpen = true; render(); });
+  document.getElementById('closeModal').addEventListener('click', () => { modalOpen = false; render(); });
+  render();
+</script>
+</body>
+</html>
